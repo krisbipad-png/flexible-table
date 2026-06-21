@@ -241,11 +241,11 @@ const NUT = {"ea-1":{"cal":320,"p":18,"c":12,"f":14,"fi":3,"hi":["B12","Iron","S
 const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const SLOTS = ["Lunch","Dinner"];
 /* ───────────────────────── RECIPE ILLUSTRATIONS ─────────────────────────
-   To attach a photo or illustration to a card: drop the file in /images and
+   To attach a photo or illustration to a card: drop the file in /Images and
    add ONE line below — "<recipe-id>": "<filename>". A value may also be a
    full https:// URL, an absolute /path, or a data: URI. Remove the line to
    detach. Cards with no entry show a matching parchment placeholder plate. */
-const IMAGE_BASE = "images/";
+const IMAGE_BASE = "Images/";
 const IMAGES = {
   "ea-5":  "ea-5.webp",   // Agedashi Tofu
   "ea-17": "ea-17.webp",  // Kabocha Curry Rice
@@ -255,7 +255,7 @@ const IMAGES = {
 };
 function recipeImage(r){
   if(!r) return null;
-  // Auto-convention: images/<id>.webp. IMAGES map / r.image override if present.
+  // Auto-convention: Images/<id>.webp. IMAGES map / r.image override if present.
   const v = r.image || IMAGES[r.id] || (r.id + ".webp");
   return /^(https?:|data:|\/)/.test(v) ? v : (IMAGE_BASE + v);
 }
@@ -279,7 +279,7 @@ function illusHTML(r, variant){
                 `<div class="plate-foot">Illustration pending</div></div>`;
   // Image strategy:
   //  - explicit override (r.image or IMAGES map): use it as-is.
-  //  - otherwise auto-convention: try images/<id>.webp, then .jpg, then .png,
+  //  - otherwise auto-convention: try Images/<id>.webp, then .jpg, then .png,
   //    then give up and show the parchment placeholder underneath.
   //  Any missing/misnamed file just falls through — it can never break the page.
   const override = r.image || IMAGES[r.id];
